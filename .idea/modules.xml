@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/common/common.iml" filepath="$PROJECT_DIR$/common/common.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/common-utils/common-utils.iml" filepath="$PROJECT_DIR$/common/common-utils/common-utils.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/feign-api/feign-api.iml" filepath="$PROJECT_DIR$/common/feign-api/feign-api.iml" />
+      <module fileurl="file://$PROJECT_DIR$/gateway/gateway.iml" filepath="$PROJECT_DIR$/gateway/gateway.iml" />
+      <module fileurl="file://$PROJECT_DIR$/management-parent.iml" filepath="$PROJECT_DIR$/management-parent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service/service.iml" filepath="$PROJECT_DIR$/service/service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service/service-admin/service-admin.iml" filepath="$PROJECT_DIR$/service/service-admin/service-admin.iml" />
+      <module fileurl="file://$PROJECT_DIR$/common/service-base/service-base.iml" filepath="$PROJECT_DIR$/common/service-base/service-base.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service/service-community/service-community.iml" filepath="$PROJECT_DIR$/service/service-community/service-community.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service/service-oss/service-oss.iml" filepath="$PROJECT_DIR$/service/service-oss/service-oss.iml" />
+      <module fileurl="file://$PROJECT_DIR$/service/service_user/service_user.iml" filepath="$PROJECT_DIR$/service/service_user/service_user.iml" />
+    </modules>
+  </component>
+</project>

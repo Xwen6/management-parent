@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wyu.xwen.communityService.mapper.EsDeviceMapper">
+
+    <select id="pageList" resultType="wyu.xwen.communityService.entity.vo.DeviceVo">
+     select  device.id,
+             community.name as communityName,
+            device.code,
+            device.name,
+            device.brand,
+            device.price,
+            device.quantity,
+            device.buy_time,
+            device.durable_years,
+            device.create_time
+     from es_device device
+     left join es_community community
+     on device.community_code = community.code
+        <where>
+            <if test="query.communityName !=null and query.communityName !=''">
+                 community.name like #{query.communityName}
+            </if>
+            <if test="query.beginDate !=null ">
+                and device.create_time >= #{query.beginDate}
+            </if>
+            <if test="query.endDate !=null">
+                and device.create_time <= #{query.endDate}
+            </if>
+            <if test="query.brand !=null and query.brand !=''">
+                and query.brand = #{brand}
+            </if>
+        </where>
+        limit #{current},#{limit}
+    </select>
+</mapper>

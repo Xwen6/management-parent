@@ -1,0 +1,41 @@
+#端口
+server:
+  port: 8083
+#模块名称
+spring:
+  application:
+    name: communityService
+  cloud:
+    nacos:
+      server-addr: localhost:8848
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
+  #环境
+  profiles:
+    active: dev
+  #数据库连接
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    username: root
+    password: 4068
+    url: jdbc:mysql://localhost:3306/social?useUnicode=true&characterEncoding=UTF-8&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+  elasticsearch:
+    rest:
+      uris: 192.168.26.139:9200
+  data:
+    elasticsearch:
+      repositories:
+        enabled: true
+
+#mp日志
+mybatis-plus:
+  mapper-locations: classpath:wyu/xwen/communityService/mapper/*.xml
+  configuration:
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+  #  逻辑删除
+  global-config:
+    db-config:
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+
