@@ -9,6 +9,8 @@ import wyu.xwen.communityService.entity.EsDevice;
 import wyu.xwen.communityService.entity.vo.DeviceQuery;
 import wyu.xwen.communityService.service.EsDeviceService;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.Map;
 
 /**
@@ -28,6 +30,9 @@ public class EsDeviceController {
     /*add*/
     @PostMapping("addDevice")
     public Result addDevice(@RequestBody EsDevice device){
+        /*生成code*/
+        String code ="DV" + new SimpleDateFormat("yyyyMMddHHmmss").format(new Date());
+        device.setCode(code);
         boolean save = esDeviceService.save(device);
         return save?Result.ok():Result.error();
     }

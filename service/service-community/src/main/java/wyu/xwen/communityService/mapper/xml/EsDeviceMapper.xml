@@ -21,10 +21,10 @@
                  community.name like #{query.communityName}
             </if>
             <if test="query.beginDate !=null ">
-                and device.create_time >= #{query.beginDate}
+                and device.create_time gte #{query.beginDate}
             </if>
             <if test="query.endDate !=null">
-                and device.create_time <= #{query.endDate}
+                and device.create_time lte #{query.endDate}
             </if>
             <if test="query.brand !=null and query.brand !=''">
                 and query.brand = #{brand}

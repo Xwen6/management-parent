@@ -30,7 +30,7 @@ spring:
 
 #mp日志
 mybatis-plus:
-  mapper-locations: classpath:wyu/xwen/communityService/mapper/*.xml
+  mapper-locations: classpath:wyu/xwen/communityService/mapper/xml/*.xml
   configuration:
     log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
   #  逻辑删除

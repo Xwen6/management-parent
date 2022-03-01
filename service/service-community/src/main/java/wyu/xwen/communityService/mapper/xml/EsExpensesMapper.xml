@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="wyu.xwen.communityService.mapper.EsExpensesMapper">
+
+    <select id="pageList" resultType="wyu.xwen.communityService.entity.vo.ExpenseVo">
+        select ep.id,cm.name as communityName,ho.name as houseName,epp.name as projectName,ep.amount_total as amountTotal,ep.amount_paid as amountPaid,ep.remark,ep.create_time as createTime
+
+        from es_expenses ep
+
+                 left join es_community cm
+
+                           on ep.community_code = cm.code
+
+                 left join es_house ho
+
+                           on ep.house_code = ho.code
+
+                 left join es_expenses_project epp
+
+                           on ep.project_code = epp.code
+
+        <where>
+            <if test="query.communityName !=null and query.communityName !=''">
+                cm.name like #{query.communityName}
+            </if>
+            <if test="query.houseName !=null and query.houseName !=''">
+                ho.name like #{query.houseName}
+            </if>
+            <if test="query.projectName !=null and query.projectName !=''">
+                epp.name like #{query.projectName}
+            </if>
+            <if test="query.beginDate !=null ">
+                and ep.create_time gte #{query.beginDate}
+            </if>
+            <if test="query.endDate !=null">
+                and ep.create_time lte #{query.endDate}
+            </if>
+            <if test="query.name !=null and query.name !=''">
+                and ep.name like #{query.name}
+            </if>
+        </where>
+
+        limit #{current},#{limit}
+    </select>
+</mapper>
