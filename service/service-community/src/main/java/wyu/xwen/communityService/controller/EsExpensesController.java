@@ -5,9 +5,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import wyu.xwen.commonutils.Result;
 import wyu.xwen.communityService.entity.EsExpenses;
+import wyu.xwen.communityService.entity.vo.CommunityVo;
 import wyu.xwen.communityService.entity.vo.ExpenseQuery;
 import wyu.xwen.communityService.service.EsExpensesService;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -19,7 +21,7 @@ import java.util.Map;
  * @since 2022-02-28
  */
 @RestController
-@RequestMapping("/communityService/es-expenses")
+@RequestMapping("/communityService/Expenses")
 public class EsExpensesController {
 
     @Autowired
@@ -52,9 +54,15 @@ public class EsExpensesController {
     @PostMapping("pageList/{current}/{limit}")
     public Result pageList(@PathVariable Integer current,
                            @PathVariable Integer limit,
-                           @RequestBody ExpenseQuery query){
+                           @RequestBody(required = false) ExpenseQuery query){
         Map<String,Object> resultMap = esExpensesService.pageList(current,limit,query);
         return Result.ok().date("items",resultMap);
+    }
+
+    @GetMapping("getSelectList")
+    public Result getSelectList(){
+        List<CommunityVo> list =  esExpensesService.getServiceList();
+        return Result.ok().date("items",list);
     }
 
 }

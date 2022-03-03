@@ -2,4 +2,32 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="wyu.xwen.communityService.mapper.EsExpensesProjectMapper">
 
+    <select id="pageList" resultType="wyu.xwen.communityService.entity.EsExpensesProject">
+        select  epp.id,
+        community.name as communityName,
+        epp.code,
+        epp.name,
+        epp.code,
+        epp.create_time as createTime
+        from es_expenses_project epp
+        join es_community community
+        on epp.community_code = community.code
+        <where>
+            <if test="query.communityName !=null and query.communityName !=''">
+                community.name like concat('%',#{query.communityName},'%')
+            </if>
+            <if test="query.beginDate !=null ">
+                <![CDATA[and epp.create_time >= #{query.beginDate}]]>
+            </if>
+            <if test="query.endDate !=null">
+                <![CDATA[and epp.create_time <= #{query.beginDate}]]>
+            </if>
+            <if test="query.name !=null and query.name !=''">
+                and epp.name like concat('%',#{query.name},'%')
+            </if>
+        </where>
+        and epp.is_del=0
+        order by epp.create_time desc
+        limit #{current},#{limit}
+    </select>
 </mapper>

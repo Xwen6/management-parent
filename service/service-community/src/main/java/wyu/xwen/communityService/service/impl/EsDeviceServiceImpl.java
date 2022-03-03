@@ -38,7 +38,7 @@ public class EsDeviceServiceImpl extends ServiceImpl<EsDeviceMapper, EsDevice> i
 
     @Override
     public Map<String, Object> pageList(Integer current, Integer limit, DeviceQuery query) {
-        IPage<EsDevice> devicePage = new Page<>(current, limit);
+       /* IPage<EsDevice> devicePage = new Page<>(current, limit);
 
         QueryWrapper<EsDevice> queryWrapper = new QueryWrapper<>();
 
@@ -52,12 +52,12 @@ public class EsDeviceServiceImpl extends ServiceImpl<EsDeviceMapper, EsDevice> i
                 }
 
                 queryWrapper.in("community_code", communityCodeArr);
-                /*判断条件*/
+                *//*判断条件*//*
                 if (query.getBeginDate()!=null) {
-                    queryWrapper.ge("create_time", query.getBeginDate());
+                    queryWrapper.ge("buy_time", query.getBeginDate());
                 }
                 if (query.getEndDate()!=null) {
-                    queryWrapper.le("create_time", query.getEndDate());
+                    queryWrapper.le("buy_time", query.getEndDate());
                 }
                 if (!StringUtils.isEmpty(query.getBrand())) {
                     queryWrapper.eq("brand", query.getBrand());
@@ -69,12 +69,12 @@ public class EsDeviceServiceImpl extends ServiceImpl<EsDeviceMapper, EsDevice> i
             }
 
         } else {
-            /*判断条件*/
+            *//*判断条件*//*
             if (query.getBeginDate()!=null) {
-                queryWrapper.ge("create_time", query.getBeginDate());
+                queryWrapper.ge("buy_time", query.getBeginDate());
             }
             if (query.getEndDate()!=null) {
-                queryWrapper.le("create_time", query.getEndDate());
+                queryWrapper.le("buy_time", query.getEndDate());
             }
             if (!StringUtils.isEmpty(query.getBrand())) {
                 queryWrapper.eq("brand", query.getBrand());
@@ -82,11 +82,13 @@ public class EsDeviceServiceImpl extends ServiceImpl<EsDeviceMapper, EsDevice> i
             if (!StringUtils.isEmpty(query.getName())) {
                 queryWrapper.eq("name", query.getName());
             }
-        }
-        baseMapper.selectPage(devicePage, queryWrapper);
+        }*/
+        current = (current-1)*limit;
+        List<DeviceVo> deviceVos = esDeviceMapper.pageList(current, limit, query);
+        Integer integer = esDeviceMapper.selectTotal();
         Map<String, Object> resultMap = new HashMap<>();
-        resultMap.put("total", devicePage.getTotal());
-        resultMap.put("items", devicePage.getRecords());
+        resultMap.put("total", integer);
+        resultMap.put("items", deviceVos);
         return resultMap;
     }
 }

@@ -58,10 +58,10 @@ public class EsExpensesProjectController {
     @PostMapping("pageList/{current}/{limit}")
     public Result pageList(@PathVariable Integer current,
                            @PathVariable Integer limit,
-                           @PathVariable ExpenseProjectQuery query){
+                           @RequestBody(required = false) ExpenseProjectQuery expenseProjectQuery){
 
 
-        Map<String,Object> resultMap = esExpensesProjectService.pageList(current,limit,query);
+        Map<String,Object> resultMap = esExpensesProjectService.pageList(current,limit,expenseProjectQuery);
         return Result.ok().date("items",resultMap);
     }
 

@@ -33,4 +33,6 @@ public interface EsCommunityService extends IService<EsCommunity> {
     List<CommunityVo> getCommunityList();
 
     List<EsCommunity> getListByName(String name);
+
+    List<EsCommunity> getList();
 }

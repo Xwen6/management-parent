@@ -82,6 +82,12 @@ public class EsCommunityServiceImpl extends ServiceImpl<EsCommunityMapper, EsCom
         return list;
     }
 
+    @Override
+    public List<EsCommunity> getList() {
+        List<EsCommunity> list = baseMapper.selectList(null);
+        return list;
+    }
+
     /*根据社区代码查询社区信息*/
     @Override
     public EsCommunity getByCCode(String code) {

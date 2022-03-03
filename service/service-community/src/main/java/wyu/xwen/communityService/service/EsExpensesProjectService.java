@@ -4,6 +4,7 @@ import wyu.xwen.communityService.entity.EsExpensesProject;
 import com.baomidou.mybatisplus.extension.service.IService;
 import wyu.xwen.communityService.entity.vo.ExpenseProjectQuery;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -17,4 +18,5 @@ import java.util.Map;
 public interface EsExpensesProjectService extends IService<EsExpensesProject> {
 
     Map<String, Object> pageList(Integer current, Integer limit, ExpenseProjectQuery query);
+    List<EsExpensesProject> getListByCommunityCode(String communityCode);
 }

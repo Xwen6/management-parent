@@ -7,39 +7,36 @@
 
         from es_expenses ep
 
-                 left join es_community cm
+                  join es_community cm
 
                            on ep.community_code = cm.code
 
-                 left join es_house ho
+                  join es_house ho
 
                            on ep.house_code = ho.code
 
-                 left join es_expenses_project epp
+                  join es_expenses_project epp
 
                            on ep.project_code = epp.code
 
         <where>
             <if test="query.communityName !=null and query.communityName !=''">
-                cm.name like #{query.communityName}
+                and cm.name like concat('%',#{query.communityName},'%')
             </if>
             <if test="query.houseName !=null and query.houseName !=''">
-                ho.name like #{query.houseName}
+                and ho.name like concat('%',#{query.houseName},'%')
             </if>
             <if test="query.projectName !=null and query.projectName !=''">
-                epp.name like #{query.projectName}
+                and epp.name like concat('%',#{query.projectName},'%')
             </if>
             <if test="query.beginDate !=null ">
-                and ep.create_time gte #{query.beginDate}
+                <![CDATA[and ep.create_time >= #{query.beginDate}]]>
             </if>
             <if test="query.endDate !=null">
-                and ep.create_time lte #{query.endDate}
-            </if>
-            <if test="query.name !=null and query.name !=''">
-                and ep.name like #{query.name}
+                <![CDATA[and ep.create_time <= #{query.beginDate}]]>
             </if>
         </where>
-
+        and ep.is_del=0
         limit #{current},#{limit}
     </select>
 </mapper>

@@ -4,6 +4,7 @@ import wyu.xwen.communityService.entity.EsHouse;
 import com.baomidou.mybatisplus.extension.service.IService;
 import wyu.xwen.communityService.entity.vo.QueryCondition;
 
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,4 +26,6 @@ public interface EsHouseService extends IService<EsHouse> {
     Map<String, Object> pageList(Integer current, Integer limit, QueryCondition queryCondition);
 
     EsHouse getHouseByCode(String code);
+
+    List<EsHouse> selectListByCommunityCode(String communityCode);
 }

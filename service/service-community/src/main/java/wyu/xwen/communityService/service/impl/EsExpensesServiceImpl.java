@@ -1,16 +1,21 @@
 package wyu.xwen.communityService.service.impl;
 
-import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
-import com.baomidou.mybatisplus.core.metadata.IPage;
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
+import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
+import org.checkerframework.checker.units.qual.C;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import wyu.xwen.communityService.entity.EsCommunity;
 import wyu.xwen.communityService.entity.EsExpenses;
+import wyu.xwen.communityService.entity.EsExpensesProject;
+import wyu.xwen.communityService.entity.EsHouse;
+import wyu.xwen.communityService.entity.vo.CommunityVo;
 import wyu.xwen.communityService.entity.vo.ExpenseQuery;
 import wyu.xwen.communityService.entity.vo.ExpenseVo;
 import wyu.xwen.communityService.mapper.EsExpensesMapper;
+import wyu.xwen.communityService.service.EsCommunityService;
+import wyu.xwen.communityService.service.EsExpensesProjectService;
 import wyu.xwen.communityService.service.EsExpensesService;
-import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
-import org.springframework.stereotype.Service;
+import wyu.xwen.communityService.service.EsHouseService;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,6 +35,13 @@ public class EsExpensesServiceImpl extends ServiceImpl<EsExpensesMapper, EsExpen
 
     @Autowired
     private EsExpensesMapper esExpensesMapper;
+    @Autowired
+    private EsCommunityService esCommunityService;
+    @Autowired
+    private EsHouseService esHouseService;
+    @Autowired
+    private EsExpensesProjectService esExpensesProjectService;
+
 
     @Override
     public Map<String, Object> pageList(Integer current, Integer limit, ExpenseQuery query) {
@@ -40,5 +52,25 @@ public class EsExpensesServiceImpl extends ServiceImpl<EsExpensesMapper, EsExpen
         resultMap.put("total",total);
         resultMap.put("items",list);
         return resultMap;
+    }
+
+    @Override
+    public List<CommunityVo> getServiceList() {
+        List<EsCommunity> communityServiceList = esCommunityService.getList();
+        List<CommunityVo> communityVoList = new ArrayList<>();
+        if (communityServiceList.size()>0){
+            for (EsCommunity community : communityServiceList) {
+                List<EsHouse> houseList = esHouseService.selectListByCommunityCode(community.getCode());
+                List<EsExpensesProject> expensesProjectList = esExpensesProjectService.getListByCommunityCode(community.getCode());
+                CommunityVo communityVo = new CommunityVo();
+                communityVo.setId(community.getId());
+                communityVo.setName(community.getName());
+                communityVo.setCode(community.getCode());
+                communityVo.setHouseVoList(houseList);
+                communityVo.setExpensesProjectList(expensesProjectList);
+                communityVoList.add(communityVo);
+            }
+        }
+        return communityVoList;
     }
 }

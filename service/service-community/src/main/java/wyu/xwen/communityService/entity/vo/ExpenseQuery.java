@@ -23,6 +23,5 @@ public class ExpenseQuery {
 
     private String projectName;
 
-    private String name;
 
 }

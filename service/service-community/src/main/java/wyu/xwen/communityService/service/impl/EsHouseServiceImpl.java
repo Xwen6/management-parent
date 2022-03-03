@@ -164,6 +164,14 @@ public class EsHouseServiceImpl extends ServiceImpl<EsHouseMapper, EsHouse> impl
 
     }
 
+    @Override
+    public List<EsHouse> selectListByCommunityCode(String communityCode) {
+        QueryWrapper<EsHouse> wrapper = new QueryWrapper<>();
+        wrapper.eq("community_code",communityCode);
+        List<EsHouse> r = baseMapper.selectList(wrapper);
+        return r;
+    }
+
     /*处理条件查询结果*/
     private Map<String, Object> handleResponse(SearchResponse response) throws JsonProcessingException {
         /*处理response*/

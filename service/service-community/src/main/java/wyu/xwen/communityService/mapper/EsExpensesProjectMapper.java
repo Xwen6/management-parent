@@ -1,7 +1,11 @@
 package wyu.xwen.communityService.mapper;
 
+import org.apache.ibatis.annotations.Select;
 import wyu.xwen.communityService.entity.EsExpensesProject;
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import wyu.xwen.communityService.entity.vo.ExpenseProjectQuery;
+
+import java.util.List;
 
 /**
  * <p>
@@ -13,4 +17,8 @@ import com.baomidou.mybatisplus.core.mapper.BaseMapper;
  */
 public interface EsExpensesProjectMapper extends BaseMapper<EsExpensesProject> {
 
+    List<EsExpensesProject> pageList(Integer current, Integer limit, ExpenseProjectQuery query);
+
+    @Select("select count(1) from es_expenses_project where is_del = 0")
+    Integer getTotal();
 }

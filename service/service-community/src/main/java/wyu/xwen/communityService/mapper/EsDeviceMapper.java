@@ -21,7 +21,7 @@ import java.util.List;
 @Mapper
 public interface EsDeviceMapper extends BaseMapper<EsDevice> {
 
-    @Select("select count(*) from es_device")
+    @Select("select count(*) from es_device where is_del = 0")
     Integer selectTotal();
 
     List<DeviceVo> pageList(@Param("current") Integer current, @Param("size") Integer limit, @Param("query") DeviceQuery query);

@@ -50,7 +50,7 @@ public class EsDeviceController {
         return success?Result.ok():Result.error();
     }
 
-    @GetMapping("getByCode/{id}")
+    @GetMapping("getById/{id}")
     public Result getByCode(@PathVariable String id){
         EsDevice device = esDeviceService.getById(id);
         return Result.ok().date("item",device);
@@ -59,7 +59,7 @@ public class EsDeviceController {
     @PostMapping("pageList/{current}/{limit}")
     public Result pageList(@PathVariable Integer current,
                            @PathVariable Integer limit,
-                           @RequestBody DeviceQuery query){
+                           @RequestBody(required = false) DeviceQuery query){
         Map<String,Object> resultMap = esDeviceService.pageList(current,limit,query);
         return Result.ok().date("items",resultMap);
     }

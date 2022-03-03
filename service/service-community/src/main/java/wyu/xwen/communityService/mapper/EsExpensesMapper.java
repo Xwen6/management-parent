@@ -22,6 +22,6 @@ public interface EsExpensesMapper extends BaseMapper<EsExpenses> {
 
     List<ExpenseVo> pageList(Integer current, Integer limit, ExpenseQuery query);
 
-    @Select("select count(1) from es_expenses ")
+    @Select("select count(1) from es_expenses where is_del = 0")
     Integer getTotal();
 }
