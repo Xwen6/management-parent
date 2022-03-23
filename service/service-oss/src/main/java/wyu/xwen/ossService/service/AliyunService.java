@@ -10,4 +10,6 @@ public interface AliyunService {
     String uploadPetImag(MultipartFile file);
 
     String UploadCommunityThumb(MultipartFile file);
+
+    String uploadRepairImag(MultipartFile file,String folder);
 }

@@ -46,7 +46,7 @@ public class EsParkingSpaceUseController {
     @GetMapping("getById/{id}")
     public Result getById(@PathVariable Integer id){
         EsParkingSpaceUse esParkingSpaceUse = esParkingSpaceUseService.getParkingSpaceUseById(id);
-        return Result.ok().date("item",esParkingSpaceUse);
+        return Result.ok().data("item",esParkingSpaceUse);
     }
 
 
@@ -55,7 +55,7 @@ public class EsParkingSpaceUseController {
                            @PathVariable Integer limit,
                            @RequestBody(required = false) QueryCondition queryCondition){
         Map<String,Object> resultMap = esParkingSpaceUseService.pageList(current,limit,queryCondition);
-        return Result.ok().date("items",resultMap);
+        return Result.ok().data("items",resultMap);
     }
 
 }

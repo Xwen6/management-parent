@@ -15,22 +15,22 @@
         <module name="service-oss" />
         <module name="gateway" />
         <module name="feign-api" />
+        <module name="service-wechatApi" />
       </profile>
     </annotationProcessing>
     <bytecodeTargetLevel>
-      <module name="common" target="1.8" />
-      <module name="common-utils" target="1.8" />
-      <module name="feign-api" target="1.8" />
-      <module name="gateway" target="1.8" />
+      <module name="common" target="11" />
+      <module name="common-utils" target="1.7" />
+      <module name="feign-api" target="1.7" />
+      <module name="gateway" target="11" />
       <module name="management-parent" target="1.8" />
-      <module name="service" target="1.8" />
-      <module name="service-admin" target="1.8" />
-      <module name="service-base" target="1.8" />
-      <module name="service-community" target="1.8" />
-      <module name="service-oss" target="1.8" />
-      <module name="service_admin" target="1.8" />
-      <module name="service_login (1)" target="1.8" />
-      <module name="service_user" target="1.8" />
+      <module name="service" target="11" />
+      <module name="service-admin" target="11" />
+      <module name="service-base" target="8" />
+      <module name="service-community" target="8" />
+      <module name="service-oss" target="1.7" />
+      <module name="service-wechatApi" target="11" />
+      <module name="service_user" target="11" />
     </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
@@ -45,8 +45,7 @@
       <module name="service-base" options="-parameters" />
       <module name="service-community" options="-parameters" />
       <module name="service-oss" options="-parameters" />
-      <module name="service_admin" options="-parameters" />
-      <module name="service_login (1)" options="" />
+      <module name="service-wechatApi" options="-parameters" />
       <module name="service_user" options="-parameters" />
     </option>
   </component>

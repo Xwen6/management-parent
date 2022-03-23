@@ -1,13 +1,11 @@
 package wyu.xwen.communityService.controller;
 
 
-import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import wyu.xwen.commonutils.Result;
 import wyu.xwen.communityService.entity.EsParkingSpace;
-import wyu.xwen.communityService.entity.vo.ParkingSpaceVo;
 import wyu.xwen.communityService.entity.vo.QueryCondition;
 import wyu.xwen.communityService.service.EsParkingSpaceService;
 
@@ -49,13 +47,13 @@ public class EsParkingSpaceController {
     @PostMapping("pageList/{current}/{limit}")
     public Result pageList(@PathVariable Integer current, @PathVariable Integer limit, @RequestBody(required = false) QueryCondition condition){
         Map<String,Object> map = esParkingSpaceService.pageList(current,limit,condition);
-        return Result.ok().date("items",map);
+        return Result.ok().data("items",map);
     }
 
     @GetMapping("getParkingSpaceByCode/{code}")
     public Result getByCode(@PathVariable String code ){
         EsParkingSpace parkingSpace = esParkingSpaceService.getByCode(code);
-        return Result.ok().date("item",parkingSpace);
+        return Result.ok().data("item",parkingSpace);
     }
 
     @PostMapping("changeStatus/{id}/{status}")

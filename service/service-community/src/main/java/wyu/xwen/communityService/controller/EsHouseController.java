@@ -5,7 +5,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import wyu.xwen.commonutils.Result;
-import wyu.xwen.communityService.entity.EsBuilding;
 import wyu.xwen.communityService.entity.EsHouse;
 import wyu.xwen.communityService.entity.vo.QueryCondition;
 import wyu.xwen.communityService.service.EsHouseService;
@@ -55,14 +54,14 @@ public class EsHouseController {
                            @RequestBody(required = false) QueryCondition queryCondition){
 
         Map<String,Object> resultMap = esHouseService.pageList(current,limit, queryCondition);
-        return Result.ok().date(resultMap);
+        return Result.ok().data(resultMap);
 
     }
 
     @GetMapping("getHouseByCode/{code}")
     public Result getHouse(@PathVariable String code){
         EsHouse esHouse =  esHouseService.getHouseByCode(code);
-        return Result.ok().date("item",esHouse);
+        return Result.ok().data("item",esHouse);
     }
 
 }

@@ -22,15 +22,15 @@ public class EsAdminController {
     /*login*/
     @PostMapping("login")
     public Result login(){
-        return Result.ok().date("token","admin");
+        return Result.ok().data("token","admin");
     }
 
     /*info*/
     @GetMapping("info")
     public Result info(){
         return Result.ok()
-                .date("roles","[admin]").date("name","admin")
-                .date("avatar","https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
+                .data("roles","[admin]").data("name","admin")
+                .data("avatar","https://wpimg.wallstcn.com/f778738c-e4f8-4870-b634-56703b4acafe.gif");
     }
 }
 

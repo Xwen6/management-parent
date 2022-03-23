@@ -140,6 +140,7 @@ public class EsUserInfo implements Serializable {
     @ApiModelProperty(value = "性别")
     private Integer gender;
 
+    private String openid;
 
    // @Field(type = FieldType.Text,analyzer = "ik_max_word")
    // private String all;

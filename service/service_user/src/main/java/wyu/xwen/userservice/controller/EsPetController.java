@@ -1,14 +1,11 @@
 package wyu.xwen.userservice.controller;
 
 
-import com.baomidou.mybatisplus.extension.api.R;
-import io.swagger.models.auth.In;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import wyu.xwen.commonutils.Result;
 import wyu.xwen.userservice.entity.EsPet;
-import wyu.xwen.userservice.entity.EsUserInfo;
 import wyu.xwen.userservice.entity.PetQuery;
 import wyu.xwen.userservice.service.EsPetService;
 
@@ -62,14 +59,14 @@ public class EsPetController {
                            @PathVariable Integer limit,
                            @RequestBody(required = false)PetQuery petQuery){
         Map<String,Object> resultMap = esPetService.pageList(current,limit,petQuery);
-        return Result.ok().date(resultMap);
+        return Result.ok().data(resultMap);
 
     }
 
     @GetMapping("getPetById/{id}")
     public Result GetPetById(@PathVariable Integer id ){
         EsPet pet =  esPetService.etPetById(id);
-        return Result.ok().date("item",pet);
+        return Result.ok().data("item",pet);
     }
 
 }

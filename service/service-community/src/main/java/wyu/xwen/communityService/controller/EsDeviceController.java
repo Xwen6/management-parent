@@ -1,7 +1,6 @@
 package wyu.xwen.communityService.controller;
 
 
-import com.baomidou.mybatisplus.core.metadata.PageList;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import wyu.xwen.commonutils.Result;
@@ -53,7 +52,7 @@ public class EsDeviceController {
     @GetMapping("getById/{id}")
     public Result getByCode(@PathVariable String id){
         EsDevice device = esDeviceService.getById(id);
-        return Result.ok().date("item",device);
+        return Result.ok().data("item",device);
     }
 
     @PostMapping("pageList/{current}/{limit}")
@@ -61,7 +60,7 @@ public class EsDeviceController {
                            @PathVariable Integer limit,
                            @RequestBody(required = false) DeviceQuery query){
         Map<String,Object> resultMap = esDeviceService.pageList(current,limit,query);
-        return Result.ok().date("items",resultMap);
+        return Result.ok().data("items",resultMap);
     }
 }
 

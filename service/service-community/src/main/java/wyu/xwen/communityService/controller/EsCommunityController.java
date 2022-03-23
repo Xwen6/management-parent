@@ -44,7 +44,7 @@ public class EsCommunityController {
             throw new RuntimeException("该用户不存在");
         }
 
-        return Result.ok().date("item",item);
+        return Result.ok().data("item",item);
     }
 
     @DeleteMapping("deleteById/{id}")
@@ -56,7 +56,7 @@ public class EsCommunityController {
     @GetMapping("getByCCode/{code}")
     public Result getByCCode(@PathVariable String code){
         EsCommunity community = esCommunityService.getByCCode(code);
-        return Result.ok().date("item",community);
+        return Result.ok().data("item",community);
     }
 
     @PostMapping("update")
@@ -72,7 +72,7 @@ public class EsCommunityController {
                            @PathVariable Integer limit,
                            @RequestBody(required = false) QueryCondition queryCondition){
         Map<String,Object> resultMap = esCommunityService.pageList(current,limit, queryCondition);
-        return Result.ok().date(resultMap);
+        return Result.ok().data(resultMap);
 
     }
 
@@ -83,14 +83,14 @@ public class EsCommunityController {
     public Result getList(@PathVariable String code){
         CommunityVo communities =  esCommunityService.getList(code);
 
-        return Result.ok().date("items",communities);
+        return Result.ok().data("items",communities);
     }
 
 
     @GetMapping("getCommunityList")
     public Result getCommunityList(){
         List<CommunityVo> list = esCommunityService.getCommunityList();
-        return Result.ok().date("item",list);
+        return Result.ok().data("item",list);
     }
 
 

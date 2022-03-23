@@ -38,6 +38,22 @@ public class Result {
         return resultFormat;
     }
 
+    public static Result WX_ok(){
+        Result resultFormat = new Result();
+        resultFormat.setSuccess(true);
+        resultFormat.setCode(ResultCode.WX_SUCCESS);
+        resultFormat.setMessage("success");
+        return resultFormat;
+    }
+
+    public static Result WX_error(){
+        Result resultFormat = new Result();
+        resultFormat.setSuccess(false);
+        resultFormat.setCode(ResultCode.WX_ERROR);
+        resultFormat.setMessage("failure");
+        return resultFormat;
+    }
+
     public Result success(Boolean isSuccess){
         this.setSuccess(isSuccess);
         return this;
@@ -53,12 +69,12 @@ public class Result {
         return this;
     }
 
-    public Result date(String key, Object value){
+    public Result data(String key, Object value){
         this.getData().put(key,value);
         return this;
     }
 
-    public Result date(Map<String,Object> resultMap){
+    public Result data(Map<String,Object> resultMap){
         this.setData(resultMap);
         return this;
     }

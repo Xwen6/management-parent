@@ -37,7 +37,14 @@
       <groupId>io.github.openfeign</groupId>
       <artifactId>feign-httpclient</artifactId>
     </dependency>
+
+    <dependency>
+      <groupId>wyu.xwen</groupId>
+      <artifactId>common-utils</artifactId>
+      <version>0.0.1-SNAPSHOT</version>
+    </dependency>
   </dependencies>
+
 
   <build>
 

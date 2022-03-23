@@ -12,7 +12,6 @@ import wyu.xwen.commonutils.Result;
 import wyu.xwen.userservice.entity.EsUsers;
 import wyu.xwen.userservice.service.EsUsersService;
 
-import java.time.LocalTime;
 import java.util.Date;
 import java.util.List;
 
@@ -35,7 +34,7 @@ public class EsUsersController {
         QueryWrapper<EsUsers> wrapper = new QueryWrapper<>();
         wrapper.eq("openId",openId);
         EsUsers user = esUsersServiceImpl.getOne(wrapper);
-        return Result.ok().date("user",user);
+        return Result.ok().data("user",user);
     }
 
     /*insert*/
@@ -66,7 +65,7 @@ public class EsUsersController {
         esUsersServiceImpl.page(pageParam, null);
         List<EsUsers> records = pageParam.getRecords();
         long total = pageParam.getTotal();
-        return Result.ok().date("total",total).date("items",records);
+        return Result.ok().data("total",total).data("items",records);
     }
 
     /*delete*/

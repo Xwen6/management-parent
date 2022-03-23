@@ -1,9 +1,6 @@
 package wyu.xwen.userservice.controller;
 
 
-import com.baomidou.mybatisplus.extension.api.R;
-import io.swagger.models.auth.In;
-import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -64,14 +61,14 @@ public class EsVehicleController {
                            @PathVariable Integer limit, @RequestBody(required = false)CarQuery carQuery){
 
         Map<String,Object> resultMap = esVehicleService.pageList(current,limit,carQuery);
-        return Result.ok().date(resultMap);
+        return Result.ok().data(resultMap);
     }
 
     /*getById*/
     @GetMapping("getById/{id}")
     public Result getById(@PathVariable Integer id){
         EsVehicleVO vehicle =  esVehicleService.getCarById(id);
-        return Result.ok().date("item",vehicle);
+        return Result.ok().data("item",vehicle);
     }
 
 

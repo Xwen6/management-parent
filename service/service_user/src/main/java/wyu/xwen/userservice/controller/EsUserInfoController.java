@@ -1,10 +1,6 @@
 package wyu.xwen.userservice.controller;
 
 
-import com.baomidou.mybatisplus.extension.api.R;
-import io.swagger.models.auth.In;
-import org.checkerframework.checker.units.qual.A;
-import org.elasticsearch.client.RestClient;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -12,7 +8,6 @@ import wyu.xwen.commonutils.Result;
 import wyu.xwen.userservice.entity.EsUserInfo;
 import wyu.xwen.userservice.entity.UserInfoQuery;
 import wyu.xwen.userservice.service.EsUserInfoService;
-import wyu.xwen.userservice.service.impl.EsUserInfoServiceImpl;
 
 import java.util.Arrays;
 import java.util.List;
@@ -71,16 +66,14 @@ public class EsUserInfoController {
 
        Map<String,Object> resultMap =  esUserInfoService.pageList(current,limit,userInfoQuery);
 
-        return Result.ok().date(resultMap);
+        return Result.ok().data(resultMap);
     }
 
     @GetMapping("getUserInfoById/{id}")
     public Result GetUserInfoById(@PathVariable Integer id ){
         EsUserInfo userInfo =  esUserInfoService.getUserInfoById(id);
-        return Result.ok().date("item",userInfo);
+        return Result.ok().data("item",userInfo);
     }
-
-
 
 
 

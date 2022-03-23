@@ -1,14 +1,11 @@
 package wyu.xwen.communityService.controller;
 
 
-import io.swagger.models.auth.In;
-import org.apache.ibatis.annotations.Delete;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import wyu.xwen.commonutils.Result;
 import wyu.xwen.communityService.entity.EsBuilding;
-import wyu.xwen.communityService.entity.vo.BuildingVo;
 import wyu.xwen.communityService.entity.vo.QueryCondition;
 import wyu.xwen.communityService.service.EsBuildingService;
 
@@ -57,7 +54,7 @@ public class EsBuildingController {
                            @RequestBody(required = false) QueryCondition queryCondition){
 
         Map<String,Object> resultMap = esBuildingService.pageList(current,limit, queryCondition);
-        return Result.ok().date(resultMap);
+        return Result.ok().data(resultMap);
 
     }
 
@@ -65,7 +62,7 @@ public class EsBuildingController {
     @GetMapping("getBuildingByCode/{code}")
     public Result getBuilding(@PathVariable String code){
         EsBuilding building =  esBuildingService.getBuildingByCode(code);
-        return Result.ok().date("item",building);
+        return Result.ok().data("item",building);
     }
 
 }

@@ -48,7 +48,7 @@ public class EsExpensesController {
     @GetMapping("getById/{id}")
     public Result getById(@PathVariable Integer id){
         EsExpenses expenses = esExpensesService.getById(id);
-        return Result.ok().date("item",expenses);
+        return Result.ok().data("item",expenses);
     }
 
     @PostMapping("pageList/{current}/{limit}")
@@ -56,13 +56,13 @@ public class EsExpensesController {
                            @PathVariable Integer limit,
                            @RequestBody(required = false) ExpenseQuery query){
         Map<String,Object> resultMap = esExpensesService.pageList(current,limit,query);
-        return Result.ok().date("items",resultMap);
+        return Result.ok().data("items",resultMap);
     }
 
     @GetMapping("getSelectList")
     public Result getSelectList(){
         List<CommunityVo> list =  esExpensesService.getServiceList();
-        return Result.ok().date("items",list);
+        return Result.ok().data("items",list);
     }
 
 }

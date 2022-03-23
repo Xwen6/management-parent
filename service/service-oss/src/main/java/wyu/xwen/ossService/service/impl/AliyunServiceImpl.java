@@ -45,6 +45,12 @@ public class AliyunServiceImpl implements AliyunService {
         return upload(file,fileHost);
     }
 
+    @Override
+    public String uploadRepairImag(MultipartFile file,String folder) {
+        String fileHost = folder+"/";
+        return upload(file, fileHost);
+    }
+
     public String upload(MultipartFile file, String fileHost) {
         // yourEndpoint填写Bucket所在地域对应的Endpoint。以华东1（杭州）为例，Endpoint填写为https://oss-cn-hangzhou.aliyuncs.com。
         String endpoint = ConstantPropertiesUtil.END_POINT;

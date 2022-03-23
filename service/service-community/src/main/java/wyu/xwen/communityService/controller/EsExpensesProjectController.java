@@ -1,7 +1,6 @@
 package wyu.xwen.communityService.controller;
 
 
-import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -52,7 +51,7 @@ public class EsExpensesProjectController {
     @GetMapping("getById/{id}")
     public Result getById(@PathVariable Integer id){
         EsExpensesProject item = esExpensesProjectService.getById(id);
-        return Result.ok().date("item",item);
+        return Result.ok().data("item",item);
     }
 
     @PostMapping("pageList/{current}/{limit}")
@@ -62,7 +61,7 @@ public class EsExpensesProjectController {
 
 
         Map<String,Object> resultMap = esExpensesProjectService.pageList(current,limit,expenseProjectQuery);
-        return Result.ok().date("items",resultMap);
+        return Result.ok().data("items",resultMap);
     }
 
 }
